@@ -1,0 +1,73 @@
+GENERAL:
+	#Para modelado:
+	Nombre de la tabla siempre en PLURAL
+
+LARAVEL:
+
+	#Crear un proyecto:
+	composer create-project laravel/laravel ___________ 							   (nombre)
+
+	#Correr Proyecto:
+	php artisan serve
+
+	#Pasos iniciales:
+	1.-Editar el .env de acuerdo al proyecto
+
+	#Para sqlite, solo dejar el db_connection activo
+	
+	#Laravel Breeze (Autenticación, viene con Alpine y 					 		   Tailwind)
+	
+	#Modelado:
+		#Crear
+			php artisan make:model (nombre) -mfc
+						m=migracion -> crea la tabla
+						f=factory ->permite crear instancias aleatoriamente
+						c=controlador
+		#Ubicaciones: 
+			-Modelo: Carpeta Models
+			-Migraciones: Carpeta database/migrations
+			-Factories: database/factories
+	#Migraciones:
+				
+		php artisan migrate:fresh --seed
+ajustes:
+	#archivo php.ini:
+		cuando se requiere camnbiar de base de datos es 			necesario ir al archivo para poder activar las 		extensiones que haran que se conecte la base 			con el proyecto
+		
+Layouts:
+	#Guest y APP Layout:
+	componentes en forma de clases para retornar una vista
+		
+Breeze:
+	composer require laravel/breeze --dev
+	# php artisan breeze:install
+	
+	#Cambios en el proyecto:
+	breeze nos apoyo agregando controladores de autenticacion: registrar usuarios, cambiar contraseñas, recuperarlas, hacer login, etc.
+
+	#routeo: todas estas rutas fueron agregadas en la  carpeta routes, en el archivo web.php
+	
+	las demas vistas en este caso estan en /auth.php dentro de la misma carpeta
+	
+	#vistas: estaran alojadas en resources/views
+	las que estan conetadas a breeze: /auth
+	
+	
+	#componentes:
+	Todos los componentes que nos ha creado podemos reusarlos en las vistas a través de alpine con la etiqueta html con el pefijo "<x-"
+NPM: 
+	al ejecutar los comandos que la terminal sugiere despues de instalar breeze, lo que hacen los comandos es terminar de construir el stack en cuanto front end, agregando el package.json y de ahi herramientas como alpine, tailwind , etc.
+	#npm run dev: para poder compilar todo en entorno de desarrollo, cada componente tendra acceso a los otros restantes.
+	
+	
+
+LIVEWIRE:
+
+	#Instalación:
+	composer require livewire/livewire
+	
+	#Implementacion:
+	
+	
+
+	

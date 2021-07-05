@@ -1,0 +1,7 @@
+Personalizando  modelos:
+$fillable = campos que son manipulados por usuario
+$cast = parametros de comprobación / validación
+
+Automatizacion de instancias: 
+-Carpeta Seeders:
+	
