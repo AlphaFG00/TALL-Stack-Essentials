@@ -1,6 +1,7 @@
-<div>
-    <div x-data="{
-        showSubscribe : false,
+
+<div x-data="{
+        ShowSubscribe : true,
+        ShowSuccess: true,
         }"
         class="flex flex-col w-screen h-screen bg-indigo-900 ">
         <nav class="container flex justify-between pt-5 mx-auto text-indigo-200">
@@ -24,16 +25,16 @@
                 <p class="mb-10 text-xl text-indigo-200">
                     Probando la <span class="font-bold underline">TALL </span> stack para este curso, quieres suscribirte?
                 </p>
-                <x-button x-on:click="showSubscribe = true" class="px-8 py-3 bg-red-500 hover:bg-red-600">
+                <x-button x-on:click="showSuccess = true" class="px-8 py-3 bg-red-500 hover:bg-red-600">
                     Suscribir
                 </x-button>
             </div>
         </div>
         <div
-        x-show="showSubscribe"
-        x-on:click.self="showSubscribe = false"
-        x-on:keydown.escape.window="showSubscribe = false"
-        class="fixed top-0 flex items-center w-full h-full bg-gray-900 bg-opacity-60">
+            x-show="ShowSubscribe"
+            x-on:click.self="ShowSubscribe = false"
+            x-on:keydown.escape.window="ShowSubscribe = false"
+            class="fixed top-0 flex items-center w-full h-full bg-gray-900 bg-opacity-60">
             <div class="p-8 m-auto bg-pink-500 shadow-2xl rounded-xl">
                 <div class="flex flex-col h-screen bg-pink-500">
                     <p class="text-5xl font-extrabold text-center text-white">
@@ -51,5 +52,22 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div    x-show="ShowSuccess"
+                x-on:click.self="ShowSuccess = false"
+                x-on:keydown.escape.window="ShowSuccess = false"
+                class="fixed top-0 flex items-center w-full h-full bg-gray-900 bg-opacity-60">>
+            <div class="fixed top-0 flex items-center w-full h-full bg-green-500 bg-opacity-60">
+                <p class="font-extrabold text-center text-white text-9xl animate-pulse">
+                    &check;
+                </p>
+                <p class="mt-16 text-5xl font-extrabold text-center text-white">
+                    Genial!
+                </p>
+                <p class="text-3xl text-center text-white ">
+                    Nos vemos en tu mail!
+                </p>
+            </div>
+        </div>
 </div>
+
+
