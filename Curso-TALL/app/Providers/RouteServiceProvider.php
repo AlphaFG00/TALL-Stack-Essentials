@@ -17,7 +17,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    //ruta home por default
     public const HOME = '/dashboard';
+
 
     /**
      * The controller namespace for the application.
@@ -36,7 +38,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
-
+        //estas son las rutas que se ejecutan en la carpeta routes
         $this->routes(function () {
             Route::prefix('api')
                 ->middleware('api')
@@ -46,6 +48,14 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+
+                        //web aplica proteccion csrf, etc y auth comprueba que el usuario este logeado
+            Route::middleware(['web','auth'])
+            //cualquier ruta debe empezar por dashboard
+            ->prefix('dashboard')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/dashboard.php'));
         });
     }
 
