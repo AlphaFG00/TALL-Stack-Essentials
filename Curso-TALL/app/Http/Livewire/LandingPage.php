@@ -7,6 +7,7 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Http\Request;
 
 
 
@@ -14,12 +15,25 @@ class LandingPage extends Component
 {
     #agregando atributo email
     public $email;
+    #entangle para los x modal
+    public $showSubscribe = false;
+    public $showSuccess = false;
 
     #agregando validaciones
     protected $rules = [
         'email' => 'required|email:filter|unique:subscribers,email',
 
     ];
+
+    #funcion de mount para poder cambiar el showsuccess a true
+    public function mount(Request $request)
+    {
+        if($request->has('verified') && $request->verified == 1)
+        {
+            $this->showSuccess = true;
+        }
+
+    }
 
     #creando funcion para suscribir
     public function subscribe()
@@ -54,6 +68,8 @@ class LandingPage extends Component
         }, $intentos_insercion = 5 );
 
         $this->reset('email');
+        $this->showSubscribe = false;
+        $this->showSuccess = true;
     }
     public function render()
     {

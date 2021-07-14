@@ -1,9 +1,10 @@
-
 <div x-data="{
-        ShowSubscribe : false,
-        ShowSuccess: false,
+
+        ShowSubscribe : @entangle('showSubscribe'),
+        ShowSuccess: @entangle('showSuccess'),
         }"
         class="flex flex-col w-screen h-screen bg-indigo-900 ">
+        <!--entangle , es una forma de enredad o enlazar variables entre livewire y alpine -->
         <nav class="container flex justify-between pt-5 mx-auto text-indigo-200">
             <a href="/" class="text-4xl font-bold">
                 <x-application-logo  class="w-16 h-16 fill-current"></x-application-logo>
@@ -36,8 +37,8 @@
             </p>
             <form class="flex flex-col items-center p-24"
                     wire:submit.prevent="subscribe"
-            >
-                <x-input wire:model='email' class="px-5 py-3 border border-blue-400 w-80" type="email" name="email" placeholder="tu correo">
+            >                   <!--defer retrasa el envio de las peticiones-->
+                <x-input wire:model.defer='email' class="px-5 py-3 border border-blue-400 w-80" type="email" name="email" placeholder="tu correo">
                 </x-input>
                 <span class="text-xs text-gray-100">
                     <!-- mostrar error variable email -->
@@ -49,7 +50,15 @@
                         : 'Te enviaremos un correo'
                     }}
                 </span>
-                <x-button class="justify-center px-5 py-3 mt-5 bg-blue-500 w-80">Enviar</x-button>
+                <x-button class="justify-center px-5 py-3 mt-5 bg-blue-500 w-80">
+                    <!--agregando la carga de un circulo mientras se manda la peticion-->
+                    <span wire:loading wire:target="subscribe" class="animate-spin">
+                        &#9696;
+                    </span>
+                    <span wire:loading.remove wire:target="subscribe">
+                        Enviar
+                    </span>
+                </x-button>
             </form>
         </x-modal>
         <x-modal class="bg-green-500" trigger="ShowSuccess">
@@ -59,9 +68,16 @@
             <p class="mt-16 text-5xl font-extrabold text-center text-white">
                 Genial!
             </p>
+            <!--validando la verificacion-->
+            @if (request()->has('verified') && request()->verified == 1)
+                <p class="text-3xl text-center text-white ">
+                    Gracias por confirmar!
+                </p>
+            @else
             <p class="text-3xl text-center text-white ">
                 Nos vemos en tu mail!
             </p>
+            @endif
         </x-modal>
 </div>
 
