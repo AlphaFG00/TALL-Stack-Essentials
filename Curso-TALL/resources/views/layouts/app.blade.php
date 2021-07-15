@@ -31,6 +31,7 @@
                 {{ $slot }}
             </main>
         </div>
+        <!--importando scripts-->
         @livewireScripts
     </body>
 </html>

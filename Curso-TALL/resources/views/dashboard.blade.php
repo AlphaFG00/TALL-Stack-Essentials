@@ -13,7 +13,8 @@
                 </div>
                 <ul>
                     <li list-disc>
-                        <a href="#">
+                        <!--3.- agregando el routeo-->
+                        <a href="{{ route('subscribers.all')}}">
                             Administrar Suscriptores
                         </a>
                     </li>

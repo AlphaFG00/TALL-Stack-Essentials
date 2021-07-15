@@ -20,6 +20,7 @@
         <div class="font-sans antialiased text-gray-900">
             {{ $slot }}
         </div>
+        <!--importando scripts-->
         @livewireScripts
     </body>
 </html>
